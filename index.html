@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxymovies.in</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-image: url('image.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px 10px;
+      overflow-y: auto;
+    }
+    .header-title {
+      color: transparent;
+    }
+    .title-purple {
+      color: #0B85FF;
+    }
+    .button-purple {
+      background-color:#0B85FF;;
+      color: #0B85FF;
+      border: 2px solid#0B85FF;
+    }
+    .wrapper {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 7px;
+      padding: 30px 30px 35px;
+      transition: height 0.2s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      background: transparent;
+      margin-bottom: 30px;
+    }
+    .wrapper form {
+      height: 100px;
+      display: flex;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      border-radius: 7px;
+      background: transparent;
+      align-items: center;
+      justify-content: center;
+      transition: height 0.2s ease;
+      padding: 50px 0; /* Adjust padding for Upload QR to Download */
+    }
+    .wrapper.active form {
+      height: 225px;
+      pointer-events: none;
+    }
+    form img {
+      display: none;
+      max-width: 148px;
+    }
+    .wrapper.active form img {
+      display: block;
+    }
+    .wrapper.active form .content {
+      display: none;
+    }
+    form .content i {
+      color: #0B85FF;
+      font-size: 55px;
+    }
+    form .content p {
+      color: #0B85FF;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+    .wrapper .details {
+      opacity: 0;
+      margin-top: 25px;
+      pointer-events: none;
+    }
+    .wrapper.active .details {
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.5s 0.05s ease;
+    }
+    .details textarea {
+      width: 100%;
+      height: 128px;
+      outline: none;
+      resize: none;
+      color: #fff;
+      font-size: 18px;
+      background: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      border: 1px solid #fff;
+    }
+    textarea::-webkit-scrollbar {
+      width: 0px;
+    }
+    textarea:hover::-webkit-scrollbar {
+      width: 5px;
+    }
+    textarea:hover::-webkit-scrollbar-track {
+      background: none;
+    }
+    textarea:hover::-webkit-scrollbar-thumb {
+      background: #fff;
+      border-radius: 8px;
+    }
+    .details .buttons {
+      display: flex;
+      margin-top: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .buttons button {
+      height: 55px;
+      outline: none;
+      border: none;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      color: #0B85FF;
+      border-radius: 5px;
+      background: #fff;
+      transition: transform 0.3s ease;
+      width: calc(100% / 2 - 10px);
+    }
+    .buttons button:active {
+      transform: scale(0.95);
+    }
+    /* Default Styles (Mobile First) */
+    section.relative.w-full {
+      padding: 20px;
+    }
+    /* Responsive Styles */
+    @media (min-width: 640px) {
+      .buttons button {
+        width: 48%;
+      }
+    }
+    @media (min-width: 768px) {
+      header {
+        text-align: left;
+      }
+      .wrapper {
+        flex-direction: row;
+        padding: 20px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .wrapper {
+        max-width: 900px;
+      }
+      section.relative.w-full {
+        padding: 40px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+       emailjs.init("mKAkcvOsTh9tEfVVs"); //ID
+    })();
+  </script>  
+</head>
+<body>
+  <header class="text-white body-font bg-transparent">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <!-- Replace the SVG logo with an <img> tag for your own logo -->
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <img src="logogalaxy.jpeg" alt="Your Logo" class="w-10 h-10 rounded-full" />
+        <!-- Replace the text with your own if needed -->
+        <span class="ml-3 text-xl">Galaxy Movies <br></span>
+      </a>
+    </div>
+  </header>
+<!-- QR code feature start-->  
+<div class="wrapper">
+    <form action="#">
+      <input type="file" hidden>
+      <img src="#" alt="qr-code">
+      <div class="content">
+        <i class="fas fa-cloud-upload"></i>
+        <p>Upload QR Code to Download</p>
+      </div>
+    </form>
+    
+    <div class="details">
+      <textarea spellcheck="false" disabled></textarea>
+      <div class="buttons">
+        <button class="close">back</button>
+        <button class="copy">copy link to download</button>
+      </div>
+    </div>
+  </div>
+<!-- QR code feature end-->
+<div class="isolate bg-[background-image] px-6 py-24 sm:py-32 lg:px-8"></div>
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Contact sales</h2>
+    <p class="mt-2 text-lg leading-8 text-white">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+  </div>
+  <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+      <div>
+        <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">First name</label>
+        <div class="mt-2.5">
+          <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div>
+        <label for="last-name" class="block text-sm font-semibold leading-6 text-gray-900">Last name</label>
+        <div class="mt-2.5">
+          <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+        <div class="mt-2.5">
+          <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">Message</label>
+        <div class="mt-2.5">
+          <textarea name="message" id="message" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+        </div>
+      </div>
+    <div class="mt-10">
+      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Let's talk</button>
+    </div>
+  </form>
+</div>
+<!-- EmailJS handling -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  (function() {
+    emailjs.init("mKAkcvOsTh9tEfVVs");
+  })();
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    emailjs.sendForm('service_ww48tbo', 'template_rpjkpr9', this)
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Message sent successfully!');
+      }, function(error) {
+        console.log('FAILED...', error);
+        alert('Message sending failed!');
+      });
+  });
+</script>
+<!--EmailJS handling end -->
+
+<!-- JS section for Qr scanning start -->
+<script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+<script>
+  const wrapper = document.querySelector(".wrapper"),
+    form = document.querySelector("form"),
+    fileInp = form.querySelector("input"),
+    infoText = form.querySelector("p"),
+    closeBtn = document.querySelector(".close"),
+    copyBtn = document.querySelector(".copy");
+
+  function fetchRequest(file, formData) {
+    infoText.innerText = "Scanning QR Code...";
+    fetch("http://api.qrserver.com/v1/read-qr-code/", {
+      method: 'POST',
+      body: formData
+    }).then(res => res.json()).then(result => {
+      result = result[0].symbol[0].data;
+      infoText.innerText = result ? "Upload QR Code to Scan" : "Couldn't scan QR Code";
+      if (!result) return;
+      document.querySelector("textarea").innerText = result;
+      form.querySelector("img").src = URL.createObjectURL(file);
+      wrapper.classList.add("active");
+      const downloadLink = document.getElementById('download-link');
+      downloadLink.href = `data:text/plain;charset=utf-8,${encodeURIComponent(result)}`;
+      downloadLink.classList.remove("hidden");
+    }).catch(() => {
+      infoText.innerText = "Couldn't scan QR Code";
+    });
+  }
+
+  fileInp.addEventListener("change", async e => {
+    let file = e.target.files[0];
+    if (!file) return;
+    let formData = new FormData();
+    formData.append('file', file);
+    fetchRequest(file, formData);
+  });
+
+  copyBtn.addEventListener("click", () => {
+    let text = document.querySelector("textarea").textContent;
+    navigator.clipboard.writeText(text);
+  });
+
+  form.addEventListener("click", () => fileInp.click());
+  closeBtn.addEventListener("click", () => wrapper.classList.remove("active"));
+</script>
+<!-- JS section for qr scetion end -->
+</body>
+</html>
