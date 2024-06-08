@@ -170,6 +170,21 @@
         padding: 40px;
       }
     }
+   /* Media query for portrait orientation */
+@media only screen and (min-device-width: 360px) and (max-device-width: 375px) and (min-device-height: 780px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  /* CSS rules for portrait orientation */
+  body {
+    background-color: lightblue;
+  }
+}
+
+/* Media query for landscape orientation */
+@media only screen and (min-device-width: 780px) and (max-device-width: 812px) and (min-device-height: 360px) and (max-device-height: 375px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
+  /* CSS rules for landscape orientation */
+  body {
+    background-color: lightcoral;
+  }
+}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
